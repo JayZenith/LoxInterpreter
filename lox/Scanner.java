@@ -54,7 +54,7 @@ class Scanner {
   }
 
     private void scanToken() {
-    char c = advance();
+    char c = advance(); //incrememnt current?
     switch (c) {
       case '(': addToken(LEFT_PAREN); break;
       case ')': addToken(RIGHT_PAREN); break;
@@ -113,13 +113,14 @@ class Scanner {
   }
 
   private void identifier() {
-    while (isAlphaNumeric(peek())) advance();
-    String text = source.substring(start, current);
+    System.out.println("here " + current); //current should point at next 
+    while (isAlphaNumeric(peek())) advance(); //we take the lexeme as a whole
+    String text = source.substring(start, current); //finally append to text 
     TokenType type = keywords.get(text);
     if (type == null) type = IDENTIFIER;
     addToken(type);
 
-    addToken(IDENTIFIER);
+    //addToken(IDENTIFIER);
   }
 
   private boolean isAlpha(char c) {
