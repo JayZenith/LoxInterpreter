@@ -49,6 +49,7 @@ class Scanner {
       scanToken();
     }
 
+    //this just adds the EOF 
     tokens.add(new Token(EOF, "", null, line));
     return tokens;
   }
@@ -113,7 +114,7 @@ class Scanner {
   }
 
   private void identifier() {
-    System.out.println("here " + current); //current should point at next 
+    //System.out.println("herebro " + line); //current should point at next 
     while (isAlphaNumeric(peek())) advance(); //we take the lexeme as a whole
     String text = source.substring(start, current); //finally append to text 
     TokenType type = keywords.get(text);
@@ -142,6 +143,7 @@ class Scanner {
   }
 
   private void addToken(TokenType type, Object literal) {
+    //System.out.println("test " + line);
     String text = source.substring(start, current);
     tokens.add(new Token(type, text, literal, line));
   }
